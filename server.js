@@ -70,6 +70,12 @@ app.route('/logout')
     res.redirect('/login');
 });
 
+app.route('/courseDetail')
+.get(sessionChecker,isInstrucRole,(req,res)=>{
+    
+});
+
+
 app.route('/login')
     .get(sessionChecker, (req, res) => {
 
