@@ -4,6 +4,7 @@ const app = express()
 const bcrypt = require('bcrypt');
 var path = require("path");
 var url = require('url');
+var port = process.env.PORT || 3000;
 
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: true });
@@ -210,6 +211,6 @@ app.route('/addData')
         res.redirect('/');
     });
 
-app.listen( function () {
+app.listen(port, function () {
     console.log('Example app listening on port 3000!')
 })
