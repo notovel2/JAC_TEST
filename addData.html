@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <!-- <div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div> -->
+
+    <div class="container">
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h5 class="card-title">Registration</h5>
+            </div>
+            <div class="card-body">
+
+                <form action='/addData' method='post'>
+                    <div>
+                        <label>
+                            <input name="coursename" type="text" class="form-control" placeholder="Course Name" aria-label="Username" aria-describedby="basic-addon1"
+                                required>
+                        </label>
+                        <label>
+                                <input name="courseDescription" type="text" class="form-control" placeholder="Description" aria-label="Username" aria-describedby="basic-addon1">
+                        </label>
+                        <label>
+                                <input name="courseCategory" type="text" class="form-control" placeholder="Category" aria-label="Username" aria-describedby="basic-addon1">
+                        </label>
+                        <label>
+                                <input name="courseSubject" type="text" class="form-control" placeholder="Subject" aria-label="Username" aria-describedby="basic-addon1">
+                        </label>
+                        <label>
+                                <input name="numberOfStudent" type="number" class="form-control" placeholder="Number of Student" aria-label="Username" aria-describedby="basic-addon1" required>
+                        </label>
+                        <div class="form-group" id="day-select">
+                            <strong>Day</strong>
+                            <select class="form-control" name="courseDay">
+                                <option value='MON'>Monday</option>
+                                <option value='TUE'>Tuesday</option>
+                                <option value='WED'>Wednesday</option>
+                                <option value='THU'>Thursday</option>
+                                <option value='FRI'>Friday</option>
+                            </select>
+                        </div>
+                        <label>
+                            <strong>Start time</strong>
+                            <input name="courseStartTime" type="time" class="form-control" placeholder="Time" aria-label="Password" aria-describedby="basic-addon1"
+                                required>
+                        </label>
+                        <label>
+                            <strong>End time</strong>
+                            <input name="courseEndTime" type="time" class="form-control" placeholder="Time" aria-label="Password" aria-describedby="basic-addon1"
+                                required>
+                        </label>
+                        <div>
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                       
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">myCourse</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Registration <span class="sr-only"></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">My Profile <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                <a class="nav-link" href="/logout">Logout <span class="sr-only"></span></a>
+            </div>
+        </nav>
+    </div>
+    <div class="jumbotron text-center">
+        <h1>myCourse</h1>
+        <p>all courses in your control</p>
+    </div>
+
+    <div class="container">
+
+        <div class="row" ng-app="myApp" ng-controller="myCtrl">
+            <!-- <p >{{params}}</p> -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Course</h3>
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-primary" href="/addData" role="button">Add Course</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <form action='/' method="GET">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-control" type="text" id='coursename' name="coursename" placeholder="Course name">
+
+                            </div>
+                            <div class="col">
+                                <div class="form-group" id="day-select">
+                                    <select class="form-control" name="courseDay" id='courseDay'>
+                                        <option value=''>Choose day</option>
+                                        <option value='MON'>Monday</option>
+                                        <option value='TUE'>Tuesday</option>
+                                        <option value='WED'>Wednesday</option>
+                                        <option value='THU'>Thursday</option>
+                                        <option value='FRI'>Friday</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="time" id='courseTime' name="courseTime" placeholder="Course name">
+
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary" type="button" ng-click="updateData()">Search</button>
+                            </div>
+                        </div>
+
+                    </form>
+                    <table class="table table-bordered table-hover">
+                        <thead  class="thead-dark">
+                            <tr>
+                                <td>Course Name</td>
+                                <td>Description</td>
+                                <td>Category</td>
+                                <td>Subject</td>
+                                <td>Day</td>
+                                <td>Start time</td>
+                                <td>End time</td>
+                                <td>Number of Student</td>
+                                <td>Instructor</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in courseData" ng-click="toEdit($event)" id="data-row">
+                                <td name="coursename">{{data.coursename}}</td>
+                                <td name="courseDescription">{{data.courseDescription}}</td>
+                                <td name="courseCategory">{{data.courseCategory}}</td>
+                                <td name="courseSubject">{{data.courseSubject}}</td>
+                                <td name="courseDay">{{data.courseDay}}</td>
+                                <td name="courseStartTime">{{data.courseStartTime}}</td>
+                                <td name="courseEndTime">{{data.courseEndTime}}</td>
+                                <td name="numberOfStudent">{{data.numberOfStudent}}</td>
+                                <td>{{data.createBy}}</td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function ($scope, $http) {
+            $http.get("getdata", { params: { "collection": "course","data": {} } }).then(function (response) {
+                $scope.courseData = response.data;
+            });
+            $scope.toEdit = function(e){
+                console.log(angular.element(e.target));
+                // var data = event.tartget.val;
+                // console.log(data);
+            };
+            $scope.updateData = function () {
+                var coursename = angular.element($('#coursename')).val();
+                var courseDay = angular.element($('#courseDay')).val();
+                var courseTime = angular.element($('#courseTime')).val();
+                var datajson = {
+                            "coursename": coursename,
+                            "courseDay": courseDay,
+                            "courseTime": courseTime
+                        };
+                var config =
+                {
+                    params: {
+                        "data": datajson,
+                        "collection": "course"
+                    }
+                };
+                $http.get("getdata", config).then(function (response) {
+                    $scope.courseData = response.data;
+                });
+            };
+
+        });
+    </script>
+
+</body>
+
+</html>

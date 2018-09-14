@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+    <!-- <div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div> -->
+
+    <div class="container">
+        <form action="/updateData" method="post">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Profile</h5>
+                </div>
+                <div class="card-body">
+
+                    <div ng-app="display-profile" ng-controller="profileCtrl">
+
+                        <div class="row">
+                            <div class="col-md-2">Name</div>
+                            <div class="col-md-5">
+                                <input class="form-control" value="{{profileData.firstname}}" name="firstname" />
+                            </div>
+                            <div class="col-md-5">
+                                <input class="form-control" value="{{profileData.lastname}}" name="lastname" />
+                            </div>
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Nickname</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" value="{{profileData.nickname}}" name="nickname" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Birthday</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" value="{{profileData.birthday}}" name="birthday" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Gender</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" value="{{profileData.gender}}" name="gender" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>Role</label>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" value="{{profileData.role}}" disabled/>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+    <script>
+        var app = angular.module('display-profile', []);
+        app.controller('profileCtrl', function ($scope, $http) {
+
+            $http.get("getUserData").then(function (response) {
+                $scope.profileData = response.data;
+            });
+
+
+        });
+    </script>
+
+</body>
+
+</html>
