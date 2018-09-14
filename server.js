@@ -56,9 +56,19 @@ app.route('/profile').get(sessionChecker, function (req, res) {
     res.sendFile(path.join(__dirname + '/profile.html'));
 })
 
+app.get('/navbar',function(req,res){
+    res.sendFile(path.join(__dirname + '/navbar.html'));
+})
+
 app.get('/', sessionChecker, function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
+
+app.route('/logout')
+.get(sessionChecker,(req,res)=>{
+    req.session.destroy();
+    res.redirect('/login');
+});
 
 app.route('/login')
     .get(sessionChecker, (req, res) => {

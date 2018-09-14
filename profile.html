@@ -12,14 +12,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
-<body>
+<body ng-app="display-profile">
 
     <!-- <div class="jumbotron text-center">
   <h1>My First Bootstrap Page</h1>
   <p>Resize this responsive page to see the effect!</p> 
 </div> -->
+    <div ng-include="'navbar'"></div>
 
     <div class="container">
+
         <form action="/updateData" method="post">
             <div class="card">
                 <div class="card-header">
@@ -27,7 +29,7 @@
                 </div>
                 <div class="card-body">
 
-                    <div ng-app="display-profile" ng-controller="profileCtrl">
+                    <div ng-controller="profileCtrl">
 
                         <div class="row">
                             <div class="col-md-2">Name</div>
