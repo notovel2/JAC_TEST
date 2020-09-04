@@ -24,7 +24,7 @@
     "morgan": "^1.9.1",
     "npm": "^6.4.1",
     "pg": "^7.4.3",
-    "sequelize": "^4.38.1"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {},
   "repository": {
